@@ -1,0 +1,104 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.category-bar {
+  white-space: nowrap;
+  padding: 10rpx 30rpx;
+  background: #fff;
+  border-bottom: 2rpx solid var(--color-border);
+  flex-shrink: 0;
+}
+.category-tab {
+  display: inline-block;
+  padding: 16rpx 28rpx;
+  font-size: 28rpx;
+  color: var(--color-text-light);
+}
+.category-tab.active {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+.dish-list {
+  flex: 1;
+  padding: 20rpx;
+}
+.dish-card {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.dish-img {
+  width: 180rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+}
+.dish-info {
+  flex: 1;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+}
+.dish-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+.dish-desc {
+  font-size: 24rpx;
+  color: var(--color-text-light);
+  flex: 1;
+}
+.dish-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dish-price {
+  font-size: 30rpx;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+.add-btn {
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 52rpx;
+}
+.cart-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #333;
+  color: #fff;
+}
+.cart-count {
+  background: var(--color-primary);
+  border-radius: 50%;
+  width: 44rpx;
+  height: 44rpx;
+  text-align: center;
+  line-height: 44rpx;
+  font-size: 24rpx;
+  margin-right: 16rpx;
+  display: inline-block;
+}
+.cart-price {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.cart-action {
+  background: var(--color-primary);
+  padding: 16rpx 40rpx;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+}

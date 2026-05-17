@@ -1,0 +1,32 @@
+<navigation-bar title="菜单" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <scroll-view class="category-bar" scroll-x>
+    <view
+      wx:for="{{categories}}"
+      wx:key="_id"
+      class="category-tab {{activeCategoryId === item._id ? 'active' : ''}}"
+      data-id="{{item._id}}"
+      bindtap="switchCategory"
+    >{{item.name}}</view>
+  </scroll-view>
+  <scroll-view class="dish-list" scroll-y type="list">
+    <view wx:for="{{dishes}}" wx:key="_id" wx:if="{{item.categoryId === activeCategoryId}}" class="dish-card">
+      <image wx:if="{{item.image}}" class="dish-img" src="{{item.image}}" mode="aspectFill" />
+      <view class="dish-info">
+        <text class="dish-name">{{item.name}}</text>
+        <text class="dish-desc" wx:if="{{item.description}}">{{item.description}}</text>
+        <view class="dish-bottom">
+          <text class="dish-price">¥{{item.price / 100}}</text>
+          <view class="add-btn" data-id="{{item._id}}" data-name="{{item.name}}" data-price="{{item.price}}" bindtap="addToCart">+</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="cart-bar" wx:if="{{cartCount > 0}}" bindtap="goCart">
+    <view class="cart-info">
+      <text class="cart-count">{{cartCount}}</text>
+      <text class="cart-price">¥{{cartTotal / 100}}</text>
+    </view>
+    <text class="cart-action">去下单</text>
+  </view>
+</view>
