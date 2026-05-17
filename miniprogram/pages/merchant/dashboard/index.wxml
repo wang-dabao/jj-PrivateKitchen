@@ -1,0 +1,31 @@
+<navigation-bar title="商家面板" back="{{isLoggedIn ? false : true}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <view class="login-box" wx:if="{{!isLoggedIn}}">
+    <text class="login-title">商家登录</text>
+    <input class="pwd-input" type="password" placeholder="请输入管理密码" value="{{password}}" bindinput="onPasswordInput" />
+    <button class="btn-primary" bindtap="login">进入管理面板</button>
+  </view>
+  <block wx:else>
+    <view class="tab-bar">
+      <text class="tab active">新订单</text>
+      <text class="tab" bindtap="goOrders">全部订单</text>
+      <text class="tab" bindtap="goDishes">菜品管理</text>
+    </view>
+    <view class="order-list">
+      <view wx:if="{{orders.length === 0}}" class="empty">暂无新订单</view>
+      <view wx:for="{{orders}}" wx:key="_id" class="order-card">
+        <view class="order-header">
+          <text class="order-table">{{item.tableNo}}号桌</text>
+          <text class="order-status pending">{{getStatusLabel(item.status)}}</text>
+        </view>
+        <view wx:for="{{item.items}}" wx:for-item="i" wx:key="dishId" class="order-item">
+          <text>{{i.name}} x{{i.count}}</text>
+        </view>
+        <view class="order-footer">
+          <text class="order-total">¥{{item.totalPrice / 100}}</text>
+          <button class="accept-btn" data-id="{{item._id}}" bindtap="acceptOrder">接单</button>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

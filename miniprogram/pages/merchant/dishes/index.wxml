@@ -1,0 +1,45 @@
+<navigation-bar title="菜品管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <scroll-view class="category-bar" scroll-x>
+    <view wx:for="{{categories}}" wx:key="_id" class="cat-tab {{activeCategoryId === item._id ? 'active' : ''}}" data-id="{{item._id}}" bindtap="switchCategory">{{item.name}}</view>
+    <view class="cat-tab add" bindtap="showAddCategory">+分类</view>
+  </scroll-view>
+  <scroll-view class="dish-list" scroll-y>
+    <view wx:for="{{dishes}}" wx:key="_id" wx:if="{{item.categoryId === activeCategoryId}}" class="dish-row">
+      <text class="dish-name">{{item.name}}</text>
+      <text class="dish-price">¥{{item.price / 100}}</text>
+      <text class="dish-status {{item.isAvailable ? '' : 'off'}}">{{item.isAvailable ? '上架' : '下架'}}</text>
+      <view class="row-actions">
+        <text data-id="{{item._id}}" bindtap="editDish">编辑</text>
+        <text data-id="{{item._id}}" bindtap="toggleDish">{{item.isAvailable ? '下架' : '上架'}}</text>
+        <text data-id="{{item._id}}" bindtap="deleteDish">删除</text>
+      </view>
+    </view>
+    <view class="add-dish-btn" bindtap="addDish">+ 添加菜品</view>
+  </scroll-view>
+  <!-- Category form modal -->
+  <view class="modal" wx:if="{{showCategoryForm}}">
+    <view class="modal-content">
+      <text class="modal-title">{{editingCategory ? '编辑分类' : '新增分类'}}</text>
+      <input class="modal-input" placeholder="分类名称" value="{{categoryForm.name}}" bindinput="onCategoryFieldChange" />
+      <view class="modal-btns">
+        <button class="modal-btn cancel" bindtap="hideCategoryForm">取消</button>
+        <button class="modal-btn confirm" bindtap="saveCategory">保存</button>
+      </view>
+    </view>
+  </view>
+  <!-- Dish form modal -->
+  <view class="modal" wx:if="{{showDishForm}}">
+    <view class="modal-content">
+      <text class="modal-title">{{editingDish ? '编辑菜品' : '新增菜品'}}</text>
+      <input class="modal-input" placeholder="菜名" data-field="name" value="{{dishForm.name}}" bindinput="onDishFieldChange" />
+      <input class="modal-input" placeholder="价格（元）" type="digit" data-field="price" value="{{dishForm.price}}" bindinput="onDishFieldChange" />
+      <input class="modal-input" placeholder="简介" data-field="description" value="{{dishForm.description}}" bindinput="onDishFieldChange" />
+      <view class="modal-btns">
+        <button class="modal-btn cancel" bindtap="hideDishForm">取消</button>
+        <button class="modal-btn confirm" bindtap="saveDish">保存</button>
+      </view>
+    </view>
+  </view>
+  <view class="modal-mask" wx:if="{{showCategoryForm || showDishForm}}" bindtap="hideModals"></view>
+</view>

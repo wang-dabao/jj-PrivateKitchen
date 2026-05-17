@@ -1,0 +1,26 @@
+<navigation-bar title="订单管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <view class="tab-bar">
+    <view wx:for="{{tabs}}" wx:key="key" class="tab {{activeTab === item.key ? 'active' : ''}}" data-key="{{item.key}}" bindtap="switchTab">{{item.label}}</view>
+  </view>
+  <view class="order-list">
+    <view wx:for="{{orders}}" wx:key="_id" class="order-card">
+      <view class="order-header">
+        <text class="order-table">{{item.tableNo}}号桌</text>
+        <text class="order-status">{{getLabel(item.status)}}</text>
+      </view>
+      <view wx:for="{{item.items}}" wx:for-item="i" wx:key="dishId" class="order-item">
+        <text>{{i.name}} x{{i.count}}</text>
+      </view>
+      <view class="order-footer">
+        <text class="order-total">¥{{item.totalPrice / 100}}</text>
+        <view class="actions">
+          <button wx:if="{{item.status === 'pending'}}" class="act-btn primary" data-id="{{item._id}}" data-status="accepted" bindtap="changeStatus">接单</button>
+          <button wx:if="{{item.status === 'accepted'}}" class="act-btn" data-id="{{item._id}}" data-status="served" bindtap="changeStatus">上菜</button>
+          <button wx:if="{{item.status === 'served'}}" class="act-btn" data-id="{{item._id}}" data-status="completed" bindtap="changeStatus">完成</button>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{orders.length === 0}}" class="empty">暂无订单</view>
+  </view>
+</view>
