@@ -1,0 +1,4 @@
+function format(price) {
+  return (price / 100).toFixed(2)
+}
+module.exports = { format: format }

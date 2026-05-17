@@ -17,6 +17,11 @@ Component({
       this.syncCart()
     },
   },
+  pageLifetimes: {
+    show() {
+      this.syncCart()
+    },
+  },
   methods: {
     async loadMenu() {
       wx.showLoading({ title: '加载中' })
@@ -57,9 +62,6 @@ Component({
     },
     goCart() {
       wx.navigateTo({ url: '/pages/cart/index' })
-    },
-    formatPrice(price: number) {
-      return (price / 100).toFixed(2)
     },
   },
 })
