@@ -1,7 +1,12 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/menu/index",
+    "pages/cart/index",
+    "pages/order/index",
+    "pages/merchant/dashboard/index",
+    "pages/merchant/orders/index",
+    "pages/merchant/dishes/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
