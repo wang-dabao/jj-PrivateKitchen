@@ -1,8 +1,18 @@
 /// <reference path="./types/index.d.ts" />
 
+interface CartItem {
+  dishId: string
+  name: string
+  price: number
+  count: number
+}
+
 interface IAppOption {
   globalData: {
-    userInfo?: WechatMiniprogram.UserInfo,
+    tableNo: number
+    isMerchant: boolean
+    cart: CartItem[]
+    envId: string
   }
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
 }

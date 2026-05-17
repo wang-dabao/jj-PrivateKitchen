@@ -18,9 +18,3 @@ App<IAppOption>({
   },
 })
 
-interface CartItem {
-  dishId: string
-  name: string
-  price: number
-  count: number
-}
