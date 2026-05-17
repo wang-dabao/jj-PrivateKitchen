@@ -5,6 +5,8 @@ App<IAppOption>({
     isMerchant: false,
     cart: [] as CartItem[],
     envId: 'cloudbase-d2gvp2x81fbf01e2b',
+    openid: '',
+    userProfile: null,
   },
   onLaunch() {
     if (!wx.cloud) {
@@ -14,7 +16,19 @@ App<IAppOption>({
         env: this.globalData.envId,
         traceUser: true,
       })
+      this.fetchOpenId()
+    }
+  },
+  async fetchOpenId() {
+    try {
+      const res = await wx.cloud.callFunction({ name: 'getOpenId' })
+      const { openid, profile } = res.result as any
+      this.globalData.openid = openid
+      if (profile) {
+        this.globalData.userProfile = { nickName: profile.nickName, avatarUrl: profile.avatarUrl }
+      }
+    } catch (e) {
+      console.error('获取 openid 失败:', e)
     }
   },
 })
-

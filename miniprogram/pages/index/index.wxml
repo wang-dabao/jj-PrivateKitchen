@@ -14,3 +14,16 @@
   </view>
   <text class="footer" wx:if="{{shop.footer}}">{{shop.footer}}</text>
 </view>
+
+<view class="modal-mask" wx:if="{{showProfile}}"></view>
+<view class="profile-modal" wx:if="{{showProfile}}">
+  <text class="profile-title">完善信息</text>
+  <text class="profile-desc">让商家知道你是谁～</text>
+  <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+    <image wx:if="{{profileAvatarUrl}}" class="avatar-preview" src="{{profileAvatarUrl}}" mode="aspectFill" />
+    <view wx:else class="avatar-placeholder">📷</view>
+    <text class="avatar-hint">点击设置头像</text>
+  </button>
+  <input class="nickname-input" type="nickname" value="{{profileNickName}}" placeholder="请输入你的昵称" bindinput="onNickNameInput" maxlength="20" />
+  <button class="btn-primary" bindtap="saveProfile">保存并开始点餐</button>
+</view>

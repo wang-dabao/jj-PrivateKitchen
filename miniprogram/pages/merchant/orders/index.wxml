@@ -6,7 +6,14 @@
   <view class="order-list">
     <view wx:for="{{orders}}" wx:key="_id" class="order-card">
       <view class="order-header">
-        <text class="order-table">{{item.tableNo}}号桌</text>
+        <view class="order-header-left">
+          <image wx:if="{{item.userAvatar}}" class="order-user-avatar" src="{{item.userAvatar}}" mode="aspectFill" />
+          <text wx:else class="order-user-avatar-placeholder">👤</text>
+          <view>
+            <text class="order-table">{{item.tableNo}}号桌</text>
+            <text class="order-user-name" wx:if="{{item.userName}}">{{item.userName}}</text>
+          </view>
+        </view>
         <text class="order-status">{{getLabel(item.status)}}</text>
       </view>
       <view wx:for="{{item.items}}" wx:for-item="i" wx:key="dishId" class="order-item">

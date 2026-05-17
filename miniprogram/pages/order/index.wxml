@@ -1,7 +1,12 @@
 <wxs module="priceUtil" src="./price.wxs" />
 <navigation-bar title="订单状态" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="page">
-  <block wx:if="{{order}}">
+  <view class="loading-tip" wx:if="{{loading}}">加载中…</view>
+  <view class="error-tip" wx:elif="{{error}}">
+    <text>{{error}}</text>
+    <button class="retry-btn" bindtap="fetchOrder">重试</button>
+  </view>
+  <block wx:elif="{{order}}">
     <view class="status-card">
       <text class="status-label">{{statusText}}</text>
       <view class="progress">

@@ -1,3 +1,86 @@
+/* 资料弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+}
+.profile-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 560rpx;
+  background: #fff;
+  border-radius: 28rpx;
+  padding: 48rpx 40rpx 40rpx;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2c2416;
+  margin-bottom: 8rpx;
+}
+.profile-desc {
+  font-size: 24rpx;
+  color: #b8a082;
+  margin-bottom: 32rpx;
+}
+.avatar-btn {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: #f8f4ed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-bottom: 24rpx;
+  border: none;
+}
+.avatar-btn::after {
+  border: none;
+}
+.avatar-preview {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+.avatar-placeholder {
+  font-size: 48rpx;
+  margin-bottom: 4rpx;
+}
+.avatar-hint {
+  font-size: 20rpx;
+  color: #b8a082;
+}
+.nickname-input {
+  width: 100%;
+  height: 80rpx;
+  background: #f8f4ed;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+  text-align: center;
+  color: #2c2416;
+  margin-bottom: 32rpx;
+}
+.profile-modal .btn-primary {
+  width: 100%;
+}
+.profile-skip {
+  font-size: 24rpx;
+  color: #ccc;
+  margin-top: 20rpx;
+  padding: 8rpx;
+}
+
 .page {
   display: flex;
   flex-direction: column;

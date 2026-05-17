@@ -13,6 +13,9 @@ interface IAppOption {
     isMerchant: boolean
     cart: CartItem[]
     envId: string
+    openid: string
+    userProfile: { nickName: string; avatarUrl: string } | null
   }
-  userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
+  userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback
+  fetchOpenId(): Promise<void>
 }

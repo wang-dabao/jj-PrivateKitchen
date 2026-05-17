@@ -1,4 +1,5 @@
 import shop from '../../config/shop'
+import { callFunction } from '../../utils/cloud'
 
 const app = getApp<IAppOption>()
 
@@ -6,6 +7,9 @@ Component({
   data: {
     shop,
     currentOrderId: '',
+    showProfile: false,
+    profileNickName: '',
+    profileAvatarUrl: '',
   },
   lifetimes: {
     attached() {
@@ -23,9 +27,54 @@ Component({
     },
   },
   methods: {
-    goMenu() {
+    async goMenu() {
+      if (app.globalData.userProfile) {
+        this.navigateToMenu()
+        return
+      }
+      if (!app.globalData.openid) {
+        wx.showLoading({ title: '请稍候…' })
+        try {
+          await app.fetchOpenId()
+        } catch (_) {
+          // fetchOpenId 内部已打印日志
+        }
+        wx.hideLoading()
+        if (!app.globalData.openid) {
+          wx.showToast({ title: '网络不给力，请重试', icon: 'none' })
+          return
+        }
+      }
+      this.setData({ showProfile: true })
+    },
+    navigateToMenu() {
       app.globalData.tableNo = 1
       wx.navigateTo({ url: '/pages/menu/index' })
+    },
+    onChooseAvatar(e: any) {
+      this.setData({ profileAvatarUrl: e.detail.avatarUrl })
+    },
+    onNickNameInput(e: any) {
+      this.setData({ profileNickName: e.detail.value })
+    },
+    async saveProfile() {
+      const { profileNickName, profileAvatarUrl } = this.data
+      if (!profileNickName.trim()) {
+        wx.showToast({ title: '请输入昵称', icon: 'none' })
+        return
+      }
+      wx.showLoading({ title: '保存中' })
+      try {
+        const res = await callFunction('saveProfile', { nickName: profileNickName, avatarUrl: profileAvatarUrl })
+        app.globalData.userProfile = { nickName: res.profile.nickName, avatarUrl: res.profile.avatarUrl }
+        this.setData({ showProfile: false })
+        wx.hideLoading()
+        this.navigateToMenu()
+      } catch (e: any) {
+        wx.hideLoading()
+        console.error('保存 profile 失败:', e)
+        wx.showToast({ title: e.errMsg || '保存失败，请重试', icon: 'none' })
+      }
     },
     onHeroTap() {
       const count = (this as any)._heroTapCount || 0

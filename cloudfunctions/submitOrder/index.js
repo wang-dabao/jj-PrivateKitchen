@@ -14,6 +14,9 @@ exports.main = async (event) => {
     totalPrice,
     remark: remark || '',
     status: 'pending',
+    userId: event.userId || '',
+    userName: event.userName || '',
+    userAvatar: event.userAvatar || '',
     createdAt: db.serverDate(),
   }
   const result = await db.collection('orders').add({ data: order })

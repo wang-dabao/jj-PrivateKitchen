@@ -41,6 +41,7 @@ Component({
       if (!app.globalData.tableNo) return wx.showToast({ title: '请先选择桌号', icon: 'none' })
       wx.showLoading({ title: '提交中' })
       try {
+        const profile = app.globalData.userProfile
         const res = await callFunction('submitOrder', {
           tableNo: app.globalData.tableNo,
           items: (cart as CartItem[]).map(i => ({
@@ -50,6 +51,9 @@ Component({
             count: i.count,
           })),
           remark: this.data.remark,
+          userId: app.globalData.openid,
+          userName: profile?.nickName || '',
+          userAvatar: profile?.avatarUrl || '',
         })
         app.globalData.cart = []
         wx.setStorageSync('currentOrderId', res.orderId)

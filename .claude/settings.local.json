@@ -8,7 +8,13 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git checkout *)",
-      "Bash(bash *)"
+      "Bash(bash *)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:www.pexels.com)",
+      "WebFetch(domain:images.unsplash.com)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "Skill(superpowers:systematic-debugging)"
     ]
   }
 }
