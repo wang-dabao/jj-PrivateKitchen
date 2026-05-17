@@ -13,7 +13,7 @@
         <text>{{i.name}} x{{i.count}}</text>
       </view>
       <view class="order-footer">
-        <text class="order-total">¥{{item.totalPrice / 100}}</text>
+        <text class="order-total">¥{{item.totalText}}</text>
         <view class="actions">
           <button wx:if="{{item.status === 'pending'}}" class="act-btn primary" data-id="{{item._id}}" data-status="accepted" bindtap="changeStatus">接单</button>
           <button wx:if="{{item.status === 'accepted'}}" class="act-btn" data-id="{{item._id}}" data-status="served" bindtap="changeStatus">上菜</button>

@@ -1,17 +1,14 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 .category-bar {
   white-space: nowrap;
   padding: 10rpx 30rpx;
   background: #fff;
   border-bottom: 2rpx solid var(--color-border);
-  flex-shrink: 0;
 }
 .category-tab {
-  display: inline-block;
+  display: inline-flex;
   padding: 16rpx 28rpx;
   font-size: 28rpx;
   color: var(--color-text-light);
@@ -21,8 +18,7 @@
   font-weight: bold;
 }
 .dish-list {
-  flex: 1;
-  padding: 20rpx;
+  padding: 20rpx 20rpx 20rpx;
 }
 .dish-card {
   display: flex;
@@ -73,6 +69,11 @@
   line-height: 52rpx;
 }
 .cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,6 +81,9 @@
   padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
   background: #333;
   color: #fff;
+}
+.dish-list.has-cart {
+  padding-bottom: 120rpx;
 }
 .cart-count {
   background: var(--color-primary);
@@ -102,3 +106,16 @@
   border-radius: 32rpx;
   font-size: 28rpx;
 }
+.detail-mask { position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0,0,0,0.6); z-index: 200; }
+.detail-popup { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 201; display: flex; align-items: center; justify-content: center; }
+.detail-inner { width: 600rpx; background: #fff; border-radius: 24rpx; overflow: hidden; }
+.detail-swiper { width: 100%; height: 400rpx; }
+.detail-img { width: 100%; height: 100%; }
+.detail-img-hint { text-align: center; font-size: 22rpx; color: var(--color-text-light); padding: 10rpx 0; background: #f9f9f9; }
+.detail-body { padding: 30rpx; }
+.detail-name { font-size: 32rpx; font-weight: bold; display: block; margin-bottom: 12rpx; }
+.detail-price { font-size: 32rpx; color: var(--color-primary); font-weight: bold; display: block; margin-bottom: 16rpx; }
+.detail-desc { font-size: 26rpx; color: var(--color-text-light); line-height: 1.6; display: block; margin-bottom: 24rpx; }
+.detail-btns { display: flex; }
+.detail-close { flex: 1; padding: 20rpx; border-radius: 12rpx; font-size: 28rpx; text-align: center; background: var(--color-bg); border: none; margin-right: 20rpx; }
+.detail-add { flex: 1; padding: 20rpx; border-radius: 12rpx; font-size: 28rpx; text-align: center; background: var(--color-primary); color: #fff; border: none; }

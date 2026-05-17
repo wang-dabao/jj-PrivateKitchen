@@ -14,13 +14,13 @@
     "coverView": false,
     "postcss": false,
     "minified": false,
-    "enhance": false,
+    "enhance": true,
     "showShadowRootInWxmlPanel": false,
     "packNpmRelationList": [],
     "ignoreUploadUnusedFiles": true,
     "compileHotReLoad": false,
     "skylineRenderEnable": true,
-    "es6": false,
+    "es6": true,
     "compileWorklet": false,
     "uglifyFileName": false,
     "uploadWithSourceMap": true,
@@ -28,23 +28,28 @@
     "minifyWXSS": true,
     "minifyWXML": true,
     "localPlugins": false,
-    "condition": false,
+    "condition": true,
     "swc": false,
     "disableSWC": true,
     "disableUseStrict": false
   },
   "simulatorType": "wechat",
-  "simulatorPluginLibVersion": {},
+  "simulatorPluginLibVersion": {
+    "wxext14566970e7e9f62": "2.27.3"
+  },
   "condition": {},
   "srcMiniprogramRoot": "miniprogram/",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "trial",
+  "libVersion": "3.16.0",
   "packOptions": {
     "ignore": [],
     "include": []
   },
-  "appid": "wx1f92b1ef5339fad5"
+  "appid": "wx0760c1141651b545",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "projectArchitecture": "multiPlatform",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

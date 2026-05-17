@@ -4,7 +4,7 @@ App<IAppOption>({
     tableNo: 0,
     isMerchant: false,
     cart: [] as CartItem[],
-    envId: 'your-env-id',
+    envId: 'cloudbase-d2gvp2x81fbf01e2b',
   },
   onLaunch() {
     if (!wx.cloud) {

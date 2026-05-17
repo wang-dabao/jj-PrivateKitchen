@@ -4,7 +4,7 @@
   <view class="info-bar">
     <text>桌号：{{tableNo}}号桌</text>
   </view>
-  <view class="cart-list">
+  <scroll-view class="cart-list" scroll-y>
     <view wx:for="{{cart}}" wx:key="dishId" class="cart-item">
       <text class="item-name">{{item.name}}</text>
       <view class="item-qty">
@@ -14,7 +14,7 @@
       </view>
       <text class="item-subtotal">¥{{priceUtil.format(item.price * item.count)}}</text>
     </view>
-  </view>
+  </scroll-view>
   <view class="remark-section">
     <text class="section-title">备注</text>
     <textarea class="remark-input" value="{{remark}}" placeholder="如有特殊要求请留言" bindinput="onRemarkInput" maxlength="200" />

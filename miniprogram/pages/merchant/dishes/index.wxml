@@ -35,6 +35,17 @@
       <input class="modal-input" placeholder="菜名" data-field="name" value="{{dishForm.name}}" bindinput="onDishFieldChange" />
       <input class="modal-input" placeholder="价格（元）" type="digit" data-field="price" value="{{dishForm.price}}" bindinput="onDishFieldChange" />
       <input class="modal-input" placeholder="简介" data-field="description" value="{{dishForm.description}}" bindinput="onDishFieldChange" />
+      <view class="images-grid">
+        <view wx:for="{{dishForm.images}}" wx:key="index" class="grid-img-wrap">
+          <image class="grid-img" src="{{item}}" mode="aspectFill" />
+          <view class="grid-img-del" data-index="{{index}}" bindtap="onRemoveImage">×</view>
+        </view>
+        <view class="grid-add" bindtap="onChooseImage">
+          <text class="upload-icon">+</text>
+          <text class="upload-text" wx:if="{{dishForm.images.length === 0}}">上传图片</text>
+        </view>
+      </view>
+      <text wx:if="{{uploading}}" class="upload-hint">上传中...</text>
       <view class="modal-btns">
         <button class="modal-btn cancel" bindtap="hideDishForm">取消</button>
         <button class="modal-btn confirm" bindtap="saveDish">保存</button>

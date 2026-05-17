@@ -1,0 +1,70 @@
+<h2>方案 B 详细设计 — 首页布局</h2>
+<p class="subtitle">点击选择可配置元素的位置和样式偏好</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">首页完整布局</div>
+    <div class="mockup-body" style="background:#f8f8f0;min-height:540rpx;display:flex;flex-direction:column;align-items:center;padding:80rpx 48rpx 0;">
+      <!-- Logo -->
+      <div style="width:120rpx;height:120rpx;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4rpx 24rpx rgba(0,0,0,0.08);">
+        <span style="font-size:56rpx;">🍳</span>
+      </div>
+      <!-- 店名 -->
+      <div style="color:#333;font-size:44rpx;font-weight:bold;margin-top:28rpx;letter-spacing:4rpx;">姜姜私房菜</div>
+      <!-- Slogan / 店铺说明 -->
+      <div style="color:#999;font-size:24rpx;margin-top:12rpx;text-align:center;max-width:480rpx;line-height:1.8;">
+        家常味道 · 用心烹制每一餐<br/>严选新鲜食材，现点现做
+      </div>
+      <!-- 营业信息（可配置） -->
+      <div style="display:flex;gap:32rpx;margin-top:32rpx;">
+        <div style="display:flex;align-items:center;gap:8rpx;font-size:22rpx;color:#999;">
+          <span>🕐</span><span>11:00-21:00</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8rpx;font-size:22rpx;color:#999;">
+          <span>📍</span><span>某某路 88 号</span>
+        </div>
+      </div>
+      <!-- 按钮区 -->
+      <div style="margin-top:80rpx;width:100%;">
+        <div class="mock-button" style="background:#e6532e;border-radius:100rpx;margin-bottom:20rpx;padding:28rpx;font-size:32rpx;box-shadow:0 4rpx 16rpx rgba(230,83,46,0.3);">选择桌号开始点餐</div>
+        <div class="mock-button" style="background:transparent;color:#e6532e;font-size:28rpx;padding:20rpx;">查看我的订单</div>
+      </div>
+      <!-- 底部装饰 -->
+      <div style="color:#ddd;font-size:20rpx;margin-top:auto;padding:32rpx 0 48rpx;">Made with ❤️ by 姜姜私房菜</div>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">可配置元素说明</div>
+    <div class="mockup-body" style="padding:32rpx;font-size:24rpx;line-height:2;color:#666;">
+      <div style="background:#fff3eb;border-left:6rpx solid #e6532e;padding:16rpx 20rpx;margin-bottom:20rpx;border-radius:0 8rpx 8rpx 0;">
+        <span style="font-weight:bold;color:#e6532e;">🖼 品牌 Logo</span><br/>
+        圆形图片，建议 200x200 以上<br/>
+        云端存储云文件 ID 或 URL
+      </div>
+      <div style="background:#fff3eb;border-left:6rpx solid #e6532e;padding:16rpx 20rpx;margin-bottom:20rpx;border-radius:0 8rpx 8rpx 0;">
+        <span style="font-weight:bold;color:#e6532e;">📝 店铺名称</span><br/>
+        支持自定义文字
+      </div>
+      <div style="background:#fff3eb;border-left:6rpx solid #e6532e;padding:16rpx 20rpx;margin-bottom:20rpx;border-radius:0 8rpx 8rpx 0;">
+        <span style="font-weight:bold;color:#e6532e;">📋 店铺说明</span><br/>
+        1-2 行介绍文字<br/>
+        云端配置，实时生效
+      </div>
+      <div style="background:#fff3eb;border-left:6rpx solid #e6532e;padding:16rpx 20rpx;margin-bottom:20rpx;border-radius:0 8rpx 8rpx 0;">
+        <span style="font-weight:bold;color:#e6532e;">🕐 营业信息</span><br/>
+        营业时间、地址等<br/>
+        可选择性展示
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pros-cons" style="margin-top:24rpx;">
+  <div class="pros"><h4>技术方案要点</h4><ul>
+    <li>新增 cloudfunction <code>getConfig</code> — 读取店铺配置</li>
+    <li>新增 cloudfunction <code>updateConfig</code> — 商家端更新配置</li>
+    <li>数据库新增 <code>config</code> 集合，单文档存储全部配置</li>
+    <li>首页 <code>attached</code> 时拉取配置，未配置则使用默认值</li>
+    <li>Logo 图片通过云存储上传，配置中存储 fileID</li>
+  </ul></div>
+</div>

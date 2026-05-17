@@ -26,9 +26,10 @@ Component({
         action: 'list',
         data: activeTab === 'accepted' ? {} : { status: activeTab },
       })
-      const filtered = activeTab === 'accepted'
-        ? orders.filter((o: any) => o.status === 'accepted' || o.status === 'served')
-        : orders
+      const formatted = orders.map((o: any) => ({ ...o, totalText: (o.totalPrice / 100).toFixed(2) }))
+      const filtered = (activeTab === 'accepted'
+        ? formatted.filter((o: any) => o.status === 'accepted' || o.status === 'served')
+        : formatted)
       this.setData({ orders: filtered })
     },
     switchTab(e: any) {

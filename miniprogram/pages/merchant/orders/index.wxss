@@ -9,7 +9,7 @@
 .order-item { padding: 8rpx 0; font-size: 28rpx; }
 .order-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16rpx; border-top: 2rpx solid var(--color-border); margin-top: 10rpx; }
 .order-total { font-size: 32rpx; font-weight: bold; }
-.actions { display: flex; gap: 16rpx; }
-.act-btn { padding: 14rpx 32rpx; border-radius: 32rpx; font-size: 24rpx; border: 2rpx solid var(--color-border); background: #fff; }
+.actions { display: flex; }
+.act-btn { padding: 14rpx 32rpx; border-radius: 32rpx; font-size: 24rpx; border: 2rpx solid var(--color-border); background: #fff; margin-right: 16rpx; }
 .act-btn.primary { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
 .empty { text-align: center; color: var(--color-text-light); padding: 100rpx 0; }

@@ -1,10 +1,11 @@
+import shop from '../../config/shop'
+
 const app = getApp<IAppOption>()
 
 Component({
   data: {
-    tableNo: 0,
-    showTablePicker: false,
-    tableNumbers: Array.from({ length: 20 }, (_, i) => i + 1),
+    shop,
+    currentOrderId: '',
   },
   lifetimes: {
     attached() {
@@ -14,26 +15,29 @@ Component({
       const tableNo = parseInt(options.tableNo) || 0
       if (tableNo > 0) {
         app.globalData.tableNo = tableNo
-        this.setData({ tableNo })
         wx.redirectTo({ url: '/pages/menu/index' })
+        return
       }
+      const orderId = wx.getStorageSync('currentOrderId')
+      if (orderId) this.setData({ currentOrderId: orderId })
     },
   },
   methods: {
-    onTableSelect(e: any) {
-      const tableNo = parseInt(e.currentTarget.dataset.no)
-      app.globalData.tableNo = tableNo
-      this.setData({ tableNo, showTablePicker: false })
+    goMenu() {
+      app.globalData.tableNo = 1
       wx.navigateTo({ url: '/pages/menu/index' })
     },
-    openTablePicker() {
-      this.setData({ showTablePicker: true })
+    onHeroTap() {
+      const count = (this as any)._heroTapCount || 0
+      if (count >= 4) {
+        (this as any)._heroTapCount = 0
+        wx.navigateTo({ url: '/pages/merchant/dashboard/index' })
+      } else {
+        (this as any)._heroTapCount = count + 1
+      }
     },
-    closeTablePicker() {
-      this.setData({ showTablePicker: false })
-    },
-    goMerchant() {
-      wx.navigateTo({ url: '/pages/merchant/dashboard/index' })
+    goMyOrder() {
+      wx.navigateTo({ url: `/pages/order/index?orderId=${this.data.currentOrderId}` })
     },
   },
 })

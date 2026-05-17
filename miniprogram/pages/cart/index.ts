@@ -52,6 +52,7 @@ Component({
           remark: this.data.remark,
         })
         app.globalData.cart = []
+        wx.setStorageSync('currentOrderId', res.orderId)
         wx.redirectTo({ url: `/pages/order/index?orderId=${res.orderId}` })
       } catch (e) {
         wx.showToast({ title: '提交失败', icon: 'none' })

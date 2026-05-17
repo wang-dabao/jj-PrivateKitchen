@@ -12,6 +12,7 @@ Component({
     orderId: '',
     order: null as any,
     statusText: '',
+    computedTotal: 0,
     pollingTimer: 0,
   },
   lifetimes: {
@@ -23,25 +24,52 @@ Component({
       this.startPolling()
     },
     detached() {
-      if (this.data.pollingTimer) clearInterval(this.data.pollingTimer)
+      this.stopPolling()
+    },
+  },
+  pageLifetimes: {
+    show() {
+      if (this.data.orderId) {
+        this.fetchOrder()
+        this.startPolling()
+      }
+    },
+    hide() {
+      this.stopPolling()
     },
   },
   methods: {
     async fetchOrder() {
+      if (!this.data.orderId) return
       try {
         const order = await callFunction('getOrder', { orderId: this.data.orderId })
+        const computedTotal = (order.items || []).reduce((s: number, i: any) => s + i.price * i.count, 0)
         this.setData({
           order,
           statusText: STATUS_MAP[order.status] || order.status,
+          computedTotal,
         })
         if (order.status === 'completed') {
-          if (this.data.pollingTimer) clearInterval(this.data.pollingTimer)
+          wx.removeStorageSync('currentOrderId')
+          this.stopPolling()
         }
-      } catch (e) { /* ignore poll errors */ }
+      } catch (e) {
+        console.error('获取订单失败:', e)
+      }
+    },
+    goHome() {
+      wx.redirectTo({ url: '/pages/index/index' })
     },
     startPolling() {
+      this.stopPolling()
       const timer = setInterval(() => this.fetchOrder(), 5000)
       this.setData({ pollingTimer: timer as any })
+    },
+    stopPolling() {
+      if (this.data.pollingTimer) {
+        clearInterval(this.data.pollingTimer)
+        this.setData({ pollingTimer: 0 })
+      }
     },
   },
 })

@@ -1,25 +1,16 @@
-<navigation-bar title="私厨点餐" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<navigation-bar title="{{shop.name}}" back="{{false}}" color="black" background="transparent"></navigation-bar>
 <view class="page">
-  <view class="hero">
-    <text class="hero-title">欢迎光临</text>
-    <text class="hero-desc">扫码点餐，美味即刻下单</text>
+  <text class="shop-name" bindtap="onHeroTap">{{shop.name}}</text>
+  <text class="shop-slogan">{{shop.slogan}}</text>
+  <text class="shop-desc" wx:if="{{shop.description}}">{{shop.description}}</text>
+  <image wx:if="{{shop.background}}" class="deco-img" src="{{shop.background}}" mode="widthFix" />
+  <view class="info-row" wx:if="{{shop.hours || shop.address}}">
+    <text wx:if="{{shop.hours}}" class="info-item">🕐 {{shop.hours}}</text>
+    <text wx:if="{{shop.address}}" class="info-item">📍 {{shop.address}}</text>
   </view>
   <view class="actions">
-    <button class="btn-primary" bindtap="openTablePicker">选择桌号开始点餐</button>
-    <button class="btn-ghost" bindtap="goMerchant">商家入口</button>
+    <button wx:if="{{currentOrderId}}" class="btn-order" bindtap="goMyOrder">查看我的订单</button>
+    <button class="btn-primary" bindtap="goMenu">开始点餐</button>
   </view>
-  <view class="modal-mask" wx:if="{{showTablePicker}}" bindtap="closeTablePicker"></view>
-  <view class="table-picker" wx:if="{{showTablePicker}}">
-    <text class="picker-title">请选择桌号</text>
-    <view class="table-grid">
-      <view
-        wx:for="{{tableNumbers}}"
-        wx:key="*this"
-        class="table-item"
-        data-no="{{item}}"
-        bindtap="onTableSelect"
-      >{{item}}号桌</view>
-    </view>
-    <button class="btn-ghost" bindtap="closeTablePicker">取消</button>
-  </view>
+  <text class="footer" wx:if="{{shop.footer}}">{{shop.footer}}</text>
 </view>

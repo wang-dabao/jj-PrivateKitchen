@@ -491,7 +491,7 @@ Component({
 - [ ] **Step 3: 重写 index.wxml**
 
 ```xml
-<navigation-bar title="私厨点餐" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<navigation-bar title="姜姜私房菜" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="page">
   <view class="hero">
     <text class="hero-title">欢迎光临</text>

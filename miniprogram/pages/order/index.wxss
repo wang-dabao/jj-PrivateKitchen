@@ -81,3 +81,13 @@
   font-size: 26rpx;
   color: var(--color-text-light);
 }
+.home-btn {
+  margin-top: 30rpx;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  font-size: 30rpx;
+  text-align: center;
+  border: none;
+}
