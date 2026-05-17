@@ -1,28 +1,25 @@
-<!--index.wxml-->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="userinfo">
-      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
-        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-        </button>
-        <view class="nickname-wrapper">
-          <text class="nickname-label">昵称</text>
-          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
-        </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-      </block>
-    </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
-    </view>
+<navigation-bar title="私厨点餐" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <view class="hero">
+    <text class="hero-title">欢迎光临</text>
+    <text class="hero-desc">扫码点餐，美味即刻下单</text>
   </view>
-</scroll-view>
+  <view class="actions">
+    <button class="btn-primary" bindtap="openTablePicker">选择桌号开始点餐</button>
+    <button class="btn-ghost" bindtap="goMerchant">商家入口</button>
+  </view>
+  <view class="modal-mask" wx:if="{{showTablePicker}}" bindtap="closeTablePicker"></view>
+  <view class="table-picker" wx:if="{{showTablePicker}}">
+    <text class="picker-title">请选择桌号</text>
+    <view class="table-grid">
+      <view
+        wx:for="{{tableNumbers}}"
+        wx:key="*this"
+        class="table-item"
+        data-no="{{item}}"
+        bindtap="onTableSelect"
+      >{{item}}号桌</view>
+    </view>
+    <button class="btn-ghost" bindtap="closeTablePicker">取消</button>
+  </view>
+</view>

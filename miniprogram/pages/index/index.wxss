@@ -1,63 +1,82 @@
-/**index.wxss**/
-page {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.scrollarea {
-  flex: 1;
-  overflow-y: hidden;
-}
-
-.userinfo {
+.page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #aaa;
-  width: 80%;
+  padding: 120rpx 60rpx;
 }
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.hero {
+  text-align: center;
+  margin-bottom: 80rpx;
 }
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.avatar-wrapper {
-  padding: 0;
-  width: 56px !important;
-  border-radius: 8px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.avatar {
+.hero-title {
   display: block;
-  width: 56px;
-  height: 56px;
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
 }
-
-.nickname-wrapper {
-  display: flex;
+.hero-desc {
+  display: block;
+  color: var(--color-text-light);
+  font-size: 28rpx;
+}
+.actions {
   width: 100%;
-  padding: 16px;
-  box-sizing: border-box;
-  border-top: .5px solid rgba(0, 0, 0, 0.1);
-  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
-  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
 }
-
-.nickname-label {
-  width: 105px;
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border: none;
 }
-
-.nickname-input {
-  flex: 1;
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-light);
+  border: 2rpx solid var(--color-border);
+  border-radius: 16rpx;
+  padding: 28rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+.modal-mask {
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+.table-picker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 40rpx 30rpx calc(40rpx + env(safe-area-inset-bottom));
+  z-index: 101;
+}
+.picker-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+.table-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+.table-item {
+  width: calc(25% - 15rpx);
+  padding: 24rpx 0;
+  text-align: center;
+  border: 2rpx solid var(--color-border);
+  border-radius: 16rpx;
+  font-size: 28rpx;
 }
