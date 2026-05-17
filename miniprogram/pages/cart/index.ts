@@ -23,7 +23,6 @@ Component({
     increase(e: any) {
       const item = app.globalData.cart.find(i => i.dishId === e.currentTarget.dataset.id)
       if (item) item.count++
-      app.globalData.cart = app.globalData.cart.filter(i => i.count > 0)
       this.syncCart()
     },
     decrease(e: any) {

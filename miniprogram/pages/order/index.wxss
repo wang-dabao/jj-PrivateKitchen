@@ -1,0 +1,83 @@
+.page {
+  padding: 30rpx;
+}
+.status-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+}
+.status-label {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: 40rpx;
+}
+.progress, .progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progress-step {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 48rpx;
+}
+.progress-step.active {
+  background: var(--color-primary);
+  color: #fff;
+}
+.progress-line {
+  width: 80rpx;
+  height: 4rpx;
+  background: var(--color-border);
+}
+.progress-line.active {
+  background: var(--color-primary);
+}
+.progress-labels {
+  margin-top: 16rpx;
+}
+.progress-labels text {
+  flex: 1;
+  font-size: 22rpx;
+  color: var(--color-text-light);
+}
+.order-detail {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+.detail-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+}
+.order-total {
+  text-align: right;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding-top: 20rpx;
+  border-top: 2rpx solid var(--color-border);
+  margin-top: 10rpx;
+}
+.order-remark {
+  display: block;
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: var(--color-text-light);
+}

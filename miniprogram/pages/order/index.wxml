@@ -1,0 +1,32 @@
+<navigation-bar title="订单状态" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <block wx:if="{{order}}">
+    <view class="status-card">
+      <text class="status-label">{{statusText}}</text>
+      <view class="progress">
+        <view class="progress-step {{order.status === 'pending' ? 'active' : ''}}">1</view>
+        <view class="progress-line {{order.status !== 'pending' ? 'active' : ''}}"></view>
+        <view class="progress-step {{order.status === 'accepted' ? 'active' : ''}}">2</view>
+        <view class="progress-line {{order.status === 'served' || order.status === 'completed' ? 'active' : ''}}"></view>
+        <view class="progress-step {{order.status === 'served' ? 'active' : ''}}">3</view>
+      </view>
+      <view class="progress-labels">
+        <text>待接单</text>
+        <text>已接单</text>
+        <text>已上菜</text>
+      </view>
+    </view>
+    <view class="order-detail">
+      <text class="detail-title">订单详情</text>
+      <view wx:for="{{order.items}}" wx:key="dishId" class="order-item">
+        <text>{{item.name}}</text>
+        <text>x{{item.count}}</text>
+        <text>¥{{item.price * item.count / 100}}</text>
+      </view>
+      <view class="order-total">
+        <text>合计：¥{{order.totalPrice / 100}}</text>
+      </view>
+      <text class="order-remark" wx:if="{{order.remark}}">备注：{{order.remark}}</text>
+    </view>
+  </block>
+</view>

@@ -1,3 +1,4 @@
+<wxs module="priceUtil" src="./price.wxs" />
 <navigation-bar title="确认订单" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="page">
   <view class="info-bar">
@@ -11,7 +12,7 @@
         <text class="qty-num">{{item.count}}</text>
         <view class="qty-btn" data-id="{{item.dishId}}" bindtap="increase">+</view>
       </view>
-      <text class="item-subtotal">¥{{item.price * item.count / 100}}</text>
+      <text class="item-subtotal">¥{{priceUtil.format(item.price * item.count)}}</text>
     </view>
   </view>
   <view class="remark-section">
@@ -20,7 +21,7 @@
   </view>
   <view class="bottom-bar">
     <text class="total-label">合计：</text>
-    <text class="total-price">¥{{totalPrice / 100}}</text>
+    <text class="total-price">¥{{priceUtil.format(totalPrice)}}</text>
     <button class="submit-btn" bindtap="submitOrder">提交订单</button>
   </view>
 </view>
