@@ -1,0 +1,26 @@
+<navigation-bar title="确认订单" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="page">
+  <view class="info-bar">
+    <text>桌号：{{tableNo}}号桌</text>
+  </view>
+  <view class="cart-list">
+    <view wx:for="{{cart}}" wx:key="dishId" class="cart-item">
+      <text class="item-name">{{item.name}}</text>
+      <view class="item-qty">
+        <view class="qty-btn" data-id="{{item.dishId}}" bindtap="decrease">-</view>
+        <text class="qty-num">{{item.count}}</text>
+        <view class="qty-btn" data-id="{{item.dishId}}" bindtap="increase">+</view>
+      </view>
+      <text class="item-subtotal">¥{{item.price * item.count / 100}}</text>
+    </view>
+  </view>
+  <view class="remark-section">
+    <text class="section-title">备注</text>
+    <textarea class="remark-input" value="{{remark}}" placeholder="如有特殊要求请留言" bindinput="onRemarkInput" maxlength="200" />
+  </view>
+  <view class="bottom-bar">
+    <text class="total-label">合计：</text>
+    <text class="total-price">¥{{totalPrice / 100}}</text>
+    <button class="submit-btn" bindtap="submitOrder">提交订单</button>
+  </view>
+</view>
