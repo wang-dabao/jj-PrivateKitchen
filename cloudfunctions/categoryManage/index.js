@@ -28,7 +28,7 @@ exports.main = async (event) => {
       const idx = all.findIndex(c => c._id === data._id)
       if (idx < 0) return { error: 'category not found' }
 
-      let targetIdx: number
+      let targetIdx
       if (data.newIndex !== undefined) {
         targetIdx = data.newIndex
       } else {

@@ -141,6 +141,7 @@ Component({
     },
 
     onDragMove(e: any) {
+      if (this.data.dragIndex < 0) return
       const touch = e.touches?.[0] || e.changedTouches?.[0]
       if (!touch) return
 
@@ -168,6 +169,7 @@ Component({
     },
 
     async onDragEnd() {
+      if (this.data.dragIndex < 0) return
       const { dragIndex, dragOverIndex, categories } = this.data
       if (dragIndex >= 0 && dragOverIndex >= 0 && dragIndex !== dragOverIndex) {
         const categoryId = categories[dragIndex]._id

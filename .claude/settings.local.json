@@ -14,7 +14,11 @@
       "WebFetch(domain:www.pexels.com)",
       "WebFetch(domain:images.unsplash.com)",
       "WebFetch(domain:commons.wikimedia.org)",
-      "Skill(superpowers:systematic-debugging)"
+      "Skill(superpowers:systematic-debugging)",
+      "Read(//Users/wangdabao/.claude/**)"
+    ],
+    "deny": [
+      "Bash(git push *)"
     ]
   }
 }
