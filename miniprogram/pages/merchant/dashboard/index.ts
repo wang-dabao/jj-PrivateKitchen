@@ -47,6 +47,7 @@ Component({
     },
     goOrders() { wx.navigateTo({ url: '/pages/merchant/orders/index' }) },
     goDishes() { wx.navigateTo({ url: '/pages/merchant/dishes/index' }) },
+    goCategories() { wx.navigateTo({ url: '/pages/merchant/categories/index' }) },
     getStatusLabel(status: string) {
       const map: Record<string, string> = { pending: '待接单', accepted: '已接单', served: '已上菜', completed: '已完成' }
       return map[status] || status

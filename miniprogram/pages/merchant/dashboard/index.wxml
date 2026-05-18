@@ -10,6 +10,7 @@
       <text class="tab active">新订单</text>
       <text class="tab" bindtap="goOrders">全部订单</text>
       <text class="tab" bindtap="goDishes">菜品管理</text>
+      <text class="tab" bindtap="goCategories">分类管理</text>
     </view>
     <view class="order-list">
       <view wx:if="{{orders.length === 0}}" class="empty">暂无新订单</view>

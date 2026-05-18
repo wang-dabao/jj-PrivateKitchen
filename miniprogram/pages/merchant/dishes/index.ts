@@ -8,12 +8,6 @@ function normalizeImages(dish: any): string[] {
   return []
 }
 
-interface CategoryRect {
-  left: number
-  right: number
-  center: number
-}
-
 Component({
   data: {
     categories: [] as any[],
@@ -26,14 +20,7 @@ Component({
     dishForm: { name: '', price: '', description: '', images: [] as string[], categoryId: '', categoryIndex: 0, categoryName: '' },
     categoryForm: { name: '' },
     uploading: false,
-    dragIndex: -1,
-    dragOverIndex: -1,
-    dragFloatX: 0,
-    dragFloatY: 0,
   },
-  _categoryRects: [] as CategoryRect[],
-  _dragStartX: 0,
-  _dragStartY: 0,
 
   lifetimes: { attached() { this.loadData() } },
   methods: {
@@ -44,7 +31,6 @@ Component({
       this.setData({ categories, dishes, activeCategoryId })
     },
     switchCategory(e: any) {
-      if (this.data.dragIndex >= 0) return
       this.setData({ activeCategoryId: e.currentTarget.dataset.id })
     },
     addDish() {
@@ -112,93 +98,6 @@ Component({
         'dishForm.categoryIndex': idx,
         'dishForm.categoryId': cat._id,
         'dishForm.categoryName': cat.name,
-      })
-    },
-
-    /* Drag-to-reorder */
-
-    async onCategoryLongPress(e: any) {
-      const index = e.currentTarget.dataset.index
-      const touch = e.touches?.[0] || e.changedTouches?.[0]
-      if (!touch) return
-
-      await this._measureCategoryRects()
-
-      const rect = this._categoryRects[index]
-      if (!rect) return
-
-      wx.vibrateShort({ type: 'medium' })
-
-      this._dragStartX = touch.clientX
-      this._dragStartY = touch.clientY
-
-      this.setData({
-        dragIndex: index,
-        dragOverIndex: index,
-        dragFloatX: rect.center - 40,
-        dragFloatY: touch.clientY - 20,
-      })
-    },
-
-    onDragMove(e: any) {
-      if (this.data.dragIndex < 0) return
-      const touch = e.touches?.[0] || e.changedTouches?.[0]
-      if (!touch) return
-
-      const dx = touch.clientX - this._dragStartX
-      const rect = this._categoryRects[this.data.dragIndex]
-      if (!rect) return
-
-      const floatCenterX = rect.center + dx
-
-      let overIndex = this.data.dragIndex
-      for (let i = 0; i < this._categoryRects.length; i++) {
-        if (i === this.data.dragIndex) continue
-        const r = this._categoryRects[i]
-        if (floatCenterX > r.left && floatCenterX < r.right) {
-          overIndex = i
-          break
-        }
-      }
-
-      this.setData({
-        dragFloatX: rect.center + dx - 40,
-        dragFloatY: touch.clientY - 20,
-        dragOverIndex: overIndex,
-      })
-    },
-
-    async onDragEnd() {
-      if (this.data.dragIndex < 0) return
-      const { dragIndex, dragOverIndex, categories } = this.data
-      if (dragIndex >= 0 && dragOverIndex >= 0 && dragIndex !== dragOverIndex) {
-        const categoryId = categories[dragIndex]._id
-
-        const reordered = [...categories]
-        const [item] = reordered.splice(dragIndex, 1)
-        reordered.splice(dragOverIndex, 0, item)
-
-        this.setData({ categories: reordered })
-        await callFunction('categoryManage', { action: 'reorder', data: { _id: categoryId, newIndex: dragOverIndex } })
-      }
-
-      this.setData({ dragIndex: -1, dragOverIndex: -1 })
-      this._categoryRects = []
-    },
-
-    _measureCategoryRects(): Promise<void> {
-      return new Promise(resolve => {
-        const q = this.createSelectorQuery()
-        q.selectAll('.cat-tab:not(.add)').boundingClientRect()
-        q.exec(rects => {
-          const list: WechatMiniprogram.BoundingClientRectCallbackResult[] = (rects?.[0] || []) as any
-          this._categoryRects = list.map(r => ({
-            left: r.left,
-            right: r.right,
-            center: (r.left + r.right) / 2,
-          }))
-          resolve()
-        })
       })
     },
 

@@ -1,16 +1,14 @@
 <navigation-bar title="菜品管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="page">
-  <scroll-view class="category-bar" scroll-x="{{dragIndex < 0}}" bindtouchmove="onDragMove" bindtouchend="onDragEnd">
+  <scroll-view class="category-bar" scroll-x>
     <view
       wx:for="{{categories}}"
       wx:key="_id"
-      class="cat-tab {{activeCategoryId === item._id ? 'active' : ''}} {{dragIndex === index ? 'dragging' : ''}} {{dragOverIndex === index ? 'drag-over' : ''}}"
+      class="cat-tab {{activeCategoryId === item._id ? 'active' : ''}}"
       data-index="{{index}}"
       data-id="{{item._id}}"
       bindtap="switchCategory"
-      bindlongpress="onCategoryLongPress"
     >
-      <text class="drag-handle">≡</text>
       {{item.name}}
     </view>
     <view class="cat-tab add" bindtap="showAddCategory">+分类</view>
@@ -28,12 +26,6 @@
     </view>
     <view class="add-dish-btn" bindtap="addDish">+ 添加菜品</view>
   </scroll-view>
-  <!-- Drag overlay -->
-  <view wx:if="{{dragIndex >= 0}}" class="drag-overlay">
-    <view class="drag-float" style="left: {{dragFloatX}}px; top: {{dragFloatY}}px;">
-      {{categories[dragIndex].name}}
-    </view>
-  </view>
   <!-- Category form modal -->
   <view class="modal" wx:if="{{showCategoryForm}}">
     <view class="modal-content">

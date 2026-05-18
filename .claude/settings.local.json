@@ -15,7 +15,10 @@
       "WebFetch(domain:images.unsplash.com)",
       "WebFetch(domain:commons.wikimedia.org)",
       "Skill(superpowers:systematic-debugging)",
-      "Read(//Users/wangdabao/.claude/**)"
+      "Read(//Users/wangdabao/.claude/**)",
+      "Bash(git config *)",
+      "Bash(ssh *)",
+      "Bash(ssh-add *)"
     ],
     "deny": [
       "Bash(git push *)"

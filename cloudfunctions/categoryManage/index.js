@@ -13,8 +13,10 @@ exports.main = async (event) => {
   switch (action) {
     case 'list':
       return (await coll.orderBy('sort', 'asc').get()).data
-    case 'add':
-      return (await coll.add({ data: { ...data, sort: data.sort || 0 } }))._id
+    case 'add': {
+      const { total } = await coll.count()
+      return (await coll.add({ data: { ...data, sort: total } }))._id
+    }
     case 'update': {
       const { _id, ...fields } = data
       await coll.doc(_id).update({ data: fields })

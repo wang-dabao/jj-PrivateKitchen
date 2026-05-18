@@ -1,0 +1,53 @@
+<navigation-bar title="分类管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<view class="page" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd">
+  <scroll-view class="list" scroll-y="{{dragIndex < 0}}">
+    <view
+      wx:for="{{categories}}"
+      wx:key="_id"
+      class="cat-row {{dragIndex === index ? 'dragging' : ''}} {{dragOverIndex === index ? 'drag-over' : ''}}"
+      data-index="{{index}}"
+      data-id="{{item._id}}"
+      bindlongpress="onLongPress"
+    >
+      <view class="drag-handle">
+        <text class="handle-bar"></text>
+        <text class="handle-bar"></text>
+      </view>
+      <view class="sort-btns">
+        <view class="sort-arrow {{index === 0 ? 'disabled' : ''}}" data-index="{{index}}" catchtap="moveUp">↑</view>
+        <view class="sort-arrow {{index === categories.length - 1 ? 'disabled' : ''}}" data-index="{{index}}" catchtap="moveDown">↓</view>
+      </view>
+      <text class="cat-name">{{item.name}}</text>
+      <view class="row-actions">
+        <text data-id="{{item._id}}" bindtap="editCategory">编辑</text>
+        <text data-id="{{item._id}}" bindtap="deleteCategory">删除</text>
+      </view>
+    </view>
+    <view wx:if="{{categories.length === 0}}" class="empty">暂无分类，请新增</view>
+  </scroll-view>
+  <view class="footer">
+    <button class="add-btn" bindtap="showAdd">+ 新增分类</button>
+  </view>
+
+  <!-- Drag float -->
+  <view wx:if="{{dragIndex >= 0}}" class="drag-float" style="top: {{dragFloatY}}px;">
+    <view class="drag-handle">
+      <text class="handle-bar"></text>
+      <text class="handle-bar"></text>
+    </view>
+    <text class="cat-name">{{categories[dragIndex].name}}</text>
+  </view>
+
+  <!-- Modal -->
+  <view class="modal-mask" wx:if="{{showForm}}" bindtap="hideForm"></view>
+  <view class="modal" wx:if="{{showForm}}">
+    <view class="modal-content">
+      <text class="modal-title">{{editingCategory ? '编辑分类' : '新增分类'}}</text>
+      <input class="modal-input" placeholder="分类名称" value="{{categoryForm.name}}" bindinput="onFieldChange" />
+      <view class="modal-btns">
+        <button class="modal-btn cancel" bindtap="hideForm">取消</button>
+        <button class="modal-btn confirm" bindtap="saveCategory">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

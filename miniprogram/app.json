@@ -6,7 +6,8 @@
     "pages/order/index",
     "pages/merchant/dashboard/index",
     "pages/merchant/orders/index",
-    "pages/merchant/dishes/index"
+    "pages/merchant/dishes/index",
+    "pages/merchant/categories/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
