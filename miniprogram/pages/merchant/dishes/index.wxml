@@ -1,7 +1,18 @@
 <navigation-bar title="菜品管理" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="page">
   <scroll-view class="category-bar" scroll-x>
-    <view wx:for="{{categories}}" wx:key="_id" class="cat-tab {{activeCategoryId === item._id ? 'active' : ''}}" data-id="{{item._id}}" bindtap="switchCategory">{{item.name}}</view>
+    <view
+      wx:for="{{categories}}"
+      wx:key="_id"
+      class="cat-tab {{activeCategoryId === item._id ? 'active' : ''}} {{dragIndex === index ? 'dragging' : ''}} {{dragOverIndex === index ? 'drag-over' : ''}}"
+      data-index="{{index}}"
+      data-id="{{item._id}}"
+      bindtap="switchCategory"
+      bindlongpress="onCategoryLongPress"
+    >
+      <text class="drag-handle">≡</text>
+      {{item.name}}
+    </view>
     <view class="cat-tab add" bindtap="showAddCategory">+分类</view>
   </scroll-view>
   <scroll-view class="dish-list" scroll-y>
@@ -17,6 +28,12 @@
     </view>
     <view class="add-dish-btn" bindtap="addDish">+ 添加菜品</view>
   </scroll-view>
+  <!-- Drag overlay -->
+  <view wx:if="{{dragIndex >= 0}}" class="drag-overlay" catchtouchmove="onDragMove" catchtouchend="onDragEnd">
+    <view class="drag-float" style="left: {{dragFloatX}}px; top: {{dragFloatY}}px;">
+      {{categories[dragIndex].name}}
+    </view>
+  </view>
   <!-- Category form modal -->
   <view class="modal" wx:if="{{showCategoryForm}}">
     <view class="modal-content">
@@ -32,6 +49,9 @@
   <view class="modal" wx:if="{{showDishForm}}">
     <view class="modal-content">
       <text class="modal-title">{{editingDish ? '编辑菜品' : '新增菜品'}}</text>
+      <picker class="modal-picker" mode="selector" range="{{categories}}" range-key="name" value="{{dishForm.categoryIndex}}" bindchange="onDishCategoryChange">
+        <view class="picker-display">{{dishForm.categoryName || '请选择分类'}}</view>
+      </picker>
       <input class="modal-input" placeholder="菜名" data-field="name" value="{{dishForm.name}}" bindinput="onDishFieldChange" />
       <input class="modal-input" placeholder="价格（元）" type="digit" data-field="price" value="{{dishForm.price}}" bindinput="onDishFieldChange" />
       <input class="modal-input" placeholder="简介" data-field="description" value="{{dishForm.description}}" bindinput="onDishFieldChange" />

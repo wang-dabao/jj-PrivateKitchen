@@ -9,6 +9,26 @@ function normalizeDish(dish: any) {
   return { ...dish, thumbImage: images[0] || '', images }
 }
 
+async function resolveCloudUrls(dishes: any[]) {
+  const fileIDs: string[] = []
+  for (const d of dishes) {
+    for (const f of (d.images || [])) {
+      if (typeof f === 'string' && f.startsWith('cloud://')) fileIDs.push(f)
+    }
+  }
+  if (!fileIDs.length) return dishes
+  const res = await wx.cloud.getTempFileURL({ fileList: fileIDs })
+  const map: Record<string, string> = {}
+  for (const f of res.fileList) {
+    if (f.status === 0 && f.tempFileURL) map[f.fileID] = f.tempFileURL
+  }
+  return dishes.map(d => ({
+    ...d,
+    images: (d.images || []).map((f: string) => map[f] || f),
+    thumbImage: map[d.thumbImage] || d.thumbImage || '',
+  }))
+}
+
 Component({
   data: {
     categories: [] as any[],
@@ -37,9 +57,11 @@ Component({
       wx.showLoading({ title: '加载中' })
       try {
         const res = await callFunction('getMenu')
+        const normalized = (res.dishes || []).map(normalizeDish)
+        const dishes = await resolveCloudUrls(normalized)
         this.setData({
           categories: res.categories,
-          dishes: (res.dishes || []).map(normalizeDish),
+          dishes,
           activeCategoryId: res.categories[0]?._id || '',
         })
       } catch (e) {

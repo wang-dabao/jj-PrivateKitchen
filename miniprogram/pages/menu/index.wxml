@@ -25,6 +25,7 @@
   </scroll-view>
   <view class="detail-mask" wx:if="{{showDetail}}" bindtap="onCloseDetail"></view>
   <view class="detail-popup" wx:if="{{showDetail}}">
+    <view class="detail-inner">
     <swiper wx:if="{{detailDish.images.length > 0}}" class="detail-swiper" indicator-dots="{{detailDish.images.length > 1}}" indicator-color="rgba(255,255,255,0.4)" indicator-active-color="#fff" bindchange="onSwiperChange" bindtap="onPreviewImage">
       <swiper-item wx:for="{{detailDish.images}}" wx:key="*this">
         <image class="detail-img" src="{{item}}" mode="aspectFill" />
@@ -39,6 +40,7 @@
         <button class="detail-close" bindtap="onCloseDetail">返回</button>
         <button class="detail-add" bindtap="addFromDetail">加入购物车</button>
       </view>
+    </view>
     </view>
   </view>
   <view class="cart-bar" wx:if="{{cartCount > 0}}" bindtap="goCart">

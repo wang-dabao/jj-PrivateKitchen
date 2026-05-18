@@ -3,12 +3,13 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 
 const categories = [
-  { name: '招牌推荐', sort: 1 },
-  { name: '凉菜', sort: 2 },
-  { name: '热菜', sort: 3 },
-  { name: '汤品', sort: 4 },
-  { name: '主食', sort: 5 },
+  { name: '招牌', sort: 1 },
+  { name: '荤菜', sort: 2 },
+  { name: '素菜', sort: 3 },
+  { name: '凉菜', sort: 4 },
+  { name: '甜品', sort: 5 },
   { name: '饮品', sort: 6 },
+  { name: '主食', sort: 7 },
 ]
 
 /*

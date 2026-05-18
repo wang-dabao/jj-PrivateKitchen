@@ -23,6 +23,26 @@ exports.main = async (event) => {
     case 'delete':
       await coll.doc(data._id).remove()
       return { ok: true }
+    case 'reorder': {
+      const all = (await coll.orderBy('sort', 'asc').get()).data
+      const idx = all.findIndex(c => c._id === data._id)
+      if (idx < 0) return { error: 'category not found' }
+
+      let targetIdx: number
+      if (data.newIndex !== undefined) {
+        targetIdx = data.newIndex
+      } else {
+        targetIdx = data.direction === 'up' ? idx - 1 : idx + 1
+      }
+      if (targetIdx < 0 || targetIdx >= all.length || targetIdx === idx) return { ok: true }
+
+      const item = all.splice(idx, 1)[0]
+      all.splice(targetIdx, 0, item)
+
+      const tasks = all.map((c, i) => coll.doc(c._id).update({ data: { sort: i } }))
+      await Promise.all(tasks)
+      return { ok: true }
+    }
     default:
       return { error: 'unknown action' }
   }
