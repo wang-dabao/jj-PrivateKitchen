@@ -13,7 +13,7 @@ const shop = {
   /** 背景图片路径，为空则不显示 */ 
   background: '/images/logo.png',  
   /** 店铺地址 */
-  address: '金桥西棠·11号楼·二单元·902 ',
+  address: '快乐星球 · 快乐食堂',
   /** 页脚文案 */
   footer: '姜姜私房菜',
 }

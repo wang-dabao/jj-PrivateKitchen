@@ -18,7 +18,13 @@
       "Read(//Users/wangdabao/.claude/**)",
       "Bash(git config *)",
       "Bash(ssh *)",
-      "Bash(ssh-add *)"
+      "Bash(ssh-add *)",
+      "Bash(awk 'NR==35' /Users/wangdabao/WeChatProjects/jj-PrivateKitchen/cloudfunctions/dishManage/index.js)",
+      "Bash(xxd)",
+      "Bash(awk 'NR==35{print \"\\\\t\\\\treturn \\(await coll.orderBy\\('\\\\''sort'\\\\'', '\\\\''asc'\\\\''\\).get\\(\\)\\).data\"; next}1' /Users/wangdabao/WeChatProjects/jj-PrivateKitchen/cloudfunctions/dishManage/index.js)",
+      "Bash(mv /tmp/dishManage_fixed.js /Users/wangdabao/WeChatProjects/jj-PrivateKitchen/cloudfunctions/dishManage/index.js)",
+      "Bash(python3 *)",
+      "Bash(/Users/wangdabao/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/brainstorming/scripts/start-server.sh *)"
     ],
     "deny": [
       "Bash(git push *)"

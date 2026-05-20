@@ -48,7 +48,7 @@
       <input class="modal-input" placeholder="价格（元）" type="digit" data-field="price" value="{{dishForm.price}}" bindinput="onDishFieldChange" />
       <input class="modal-input" placeholder="简介" data-field="description" value="{{dishForm.description}}" bindinput="onDishFieldChange" />
       <view class="images-grid">
-        <view wx:for="{{dishForm.images}}" wx:key="index" class="grid-img-wrap">
+        <view wx:for="{{dishFormImagesDisplay}}" wx:key="index" class="grid-img-wrap">
           <image class="grid-img" src="{{item}}" mode="aspectFill" />
           <view class="grid-img-del" data-index="{{index}}" bindtap="onRemoveImage">×</view>
         </view>

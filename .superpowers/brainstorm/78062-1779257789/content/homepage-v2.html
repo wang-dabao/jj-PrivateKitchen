@@ -1,0 +1,108 @@
+<h2>首页重新设计</h2>
+<p class="subtitle">突出展示自定义照片，布局更精致。菜单页保持不变。</p>
+
+<div class="cards">
+  <div class="card" data-choice="full-image" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-body" style="font-size:13px;line-height:1.6;background:#2c2416;overflow:hidden">
+          <div style="position:relative;height:340px;overflow:hidden">
+            <div class="placeholder" style="position:absolute;top:0;left:0;right:0;bottom:0;border-radius:0;margin:0;font-size:24px;z-index:0">招牌背景图</div>
+            <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent 0%,rgba(44,36,22,0.85) 60%,#2c2416 100%);padding:60px 24px 28px;z-index:1">
+              <div style="font-size:24px;font-weight:bold;color:#fff;letter-spacing:6px">姜姜私房菜</div>
+              <div style="font-size:11px;color:#d4c5b0;margin-top:6px;letter-spacing:2px">家常味道 · 用心烹制</div>
+            </div>
+          </div>
+          <div style="padding:0 24px 24px;display:flex;gap:16px">
+            <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:12px;padding:14px 16px;text-align:center">
+              <div style="font-size:11px;color:#9b8c7c;margin-bottom:4px">营业时间</div>
+              <div style="font-size:13px;color:#d4c5b0;font-weight:500">10:00-21:00</div>
+              <div style="font-size:10px;color:#6b6054">周一至周日</div>
+            </div>
+            <div style="flex:1;background:rgba(255,255,255,0.06);border-radius:12px;padding:14px 16px;text-align:center">
+              <div style="font-size:11px;color:#9b8c7c;margin-bottom:4px">店铺地址</div>
+              <div style="font-size:11px;color:#d4c5b0;line-height:1.5">金桥西棠</div>
+              <div style="font-size:10px;color:#6b6054">11号楼·二单元·902</div>
+            </div>
+          </div>
+          <div style="padding:0 24px 32px">
+            <div style="background:#e6532e;color:#fff;padding:16px;border-radius:100px;text-align:center;font-size:16px;font-weight:bold;letter-spacing:2px;box-shadow:0 8px 24px rgba(230,83,46,0.3)">开始点餐</div>
+          </div>
+          <div style="text-align:center;color:rgba(255,255,255,0.2);font-size:11px;padding-bottom:40px">姜姜私房菜</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. 大图沉浸式</h3>
+      <p>背景图占上半屏，信息渐变叠加在图上。营业时间和地址用双卡片并排。视觉冲击力强。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="card-layered" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-body" style="font-size:13px;line-height:1.6;background:linear-gradient(180deg,#2c2416 0%,#3a2f28 100%);overflow:hidden;padding:20px">
+          <div style="max-width:320px;margin:0 auto">
+            <div style="background:rgba(255,255,255,0.04);border-radius:24px;overflow:hidden;margin-bottom:20px">
+              <div class="placeholder" style="width:100%;height:180px;margin:0;border-radius:0;font-size:18px">招牌照片</div>
+            </div>
+            <div style="text-align:center;margin-bottom:28px">
+              <div style="font-size:26px;font-weight:bold;color:#fff;letter-spacing:6px">姜姜私房菜</div>
+              <div style="font-size:12px;color:#b8a082;margin-top:8px;letter-spacing:2px">家常味道 · 用心烹制</div>
+            </div>
+            <div style="display:flex;gap:12px;margin-bottom:28px">
+              <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;text-align:center">
+                <div style="font-size:20px;margin-bottom:6px">🕐</div>
+                <div style="font-size:11px;color:#b8a082">周一至周日</div>
+                <div style="font-size:14px;color:#fff;font-weight:500">10:00-21:00</div>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,0.05);border-radius:16px;padding:16px;text-align:center">
+                <div style="font-size:20px;margin-bottom:6px">📍</div>
+                <div style="font-size:11px;color:#b8a082">金桥西棠</div>
+                <div style="font-size:12px;color:#fff;font-weight:500">11-2-902</div>
+              </div>
+            </div>
+            <div style="background:#e6532e;color:#fff;padding:16px;border-radius:100px;text-align:center;font-size:16px;font-weight:bold;letter-spacing:2px;box-shadow:0 8px 24px rgba(230,83,46,0.3)">开始点餐</div>
+            <div style="color:rgba(255,255,255,0.2);font-size:11px;text-align:center;padding:28px 0 12px">姜姜私房菜</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. 卡片层叠式</h3>
+      <p>照片在圆角卡片中，不与边缘贴合更精致。店名居中，信息双卡并排。整体有「邀请函」的感觉。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="elegant-minimal" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-body" style="font-size:13px;line-height:1.6;background:#2c2416;overflow:hidden">
+          <div class="placeholder" style="width:100%;height:200px;margin:0;border-radius:0;font-size:18px">自定义招牌图</div>
+          <div style="padding:24px 28px 0">
+            <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px">
+              <div>
+                <div style="font-size:26px;font-weight:bold;color:#fff;letter-spacing:4px">姜姜私房菜</div>
+                <div style="font-size:11px;color:#b8a082;margin-top:4px">家常味道 · 用心烹制</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+              <span style="font-size:13px">🕐</span>
+              <span style="font-size:12px;color:#b8a082">周一至周日 10:00-21:00</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px">
+              <span style="font-size:13px">📍</span>
+              <span style="font-size:12px;color:#b8a082">金桥西棠 · 11号楼 · 二单元 · 902</span>
+            </div>
+            <div style="background:#e6532e;color:#fff;padding:16px;border-radius:100px;text-align:center;font-size:16px;font-weight:bold;letter-spacing:2px;box-shadow:0 8px 24px rgba(230,83,46,0.3)">开始点餐</div>
+            <div style="color:rgba(255,255,255,0.2);font-size:11px;text-align:center;padding:32px 0 24px">姜姜私房菜</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. 优雅极简式</h3>
+      <p>照片直接铺满顶上，店名和信息用列表式排列，简洁干净。适合照片本身就很出彩的店铺。</p>
+    </div>
+  </div>
+</div>

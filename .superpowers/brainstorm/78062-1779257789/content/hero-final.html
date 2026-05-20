@@ -1,0 +1,62 @@
+<h2>最终方案确认</h2>
+<p class="subtitle">居中轻量 Hero + 现有菜品列表 + 购物车栏。整体紧凑，品牌感适中。</p>
+
+<div class="mockup" style="max-width:375px">
+  <div class="mockup-header">姜姜私房菜 — 菜单页（最终稿）</div>
+  <div class="mockup-body" style="font-size:13px;line-height:1.6;background:#f5f5f5">
+
+    <div style="background:linear-gradient(135deg,#3a2f28 0%,#2c2416 100%);color:#fff;padding:24px 20px 18px;text-align:center;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;opacity:0.1;background:url('/images/logo.png') center/cover"></div>
+      <div style="font-size:20px;font-weight:bold;position:relative;z-index:1;letter-spacing:4px">姜姜私房菜</div>
+      <div style="font-size:11px;color:#b8a082;position:relative;z-index:1;margin-top:4px">家常味道 · 用心烹制</div>
+    </div>
+
+    <div style="background:#fff;padding:8px 14px;white-space:nowrap;overflow:auto;border-bottom:1px solid #f0f0f0">
+      <span style="display:inline-block;padding:6px 12px;border-radius:14px;font-size:11px;background:#ffe8e0;color:#e6532e;font-weight:bold;margin-right:6px">招牌</span>
+      <span style="display:inline-block;padding:6px 12px;border-radius:14px;font-size:11px;color:#666;margin-right:6px">荤菜</span>
+      <span style="display:inline-block;padding:6px 12px;border-radius:14px;font-size:11px;color:#666">素菜</span>
+    </div>
+
+    <div style="padding:10px 12px 70px">
+      <div style="display:flex;background:#fff;border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+        <div style="width:90px;height:90px;min-width:90px;background:#e8e0d5;display:flex;align-items:center;justify-content:center;font-size:28px">🥩</div>
+        <div style="flex:1;padding:8px 12px">
+          <div style="font-size:14px;font-weight:bold">姜姜红烧肉</div>
+          <div style="font-size:10px;color:#999;margin-top:2px">精选五花肉，慢炖两小时</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+            <span style="color:#e6532e;font-weight:bold;font-size:15px">¥48.00</span>
+            <span style="background:#e6532e;color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:18px">+</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;background:#fff;border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+        <div style="width:90px;height:90px;min-width:90px;background:#e8e0d5;display:flex;align-items:center;justify-content:center;font-size:28px">🦆</div>
+        <div style="flex:1;padding:8px 12px">
+          <div style="font-size:14px;font-weight:bold">秘制酱鸭</div>
+          <div style="font-size:10px;color:#999;margin-top:2px">自制酱料腌制24小时，酱香浓郁</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+            <span style="color:#e6532e;font-weight:bold;font-size:15px">¥58.00</span>
+            <span style="background:#e6532e;color:#fff;width:24px;height:24px;border-radius:50%;text-align:center;line-height:24px;font-size:18px">+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#333;color:#fff;padding:14px 20px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="background:#e6532e;border-radius:50%;width:22px;height:22px;text-align:center;line-height:22px;font-size:11px">2</span>
+        <span style="font-size:15px;font-weight:bold">¥106.00</span>
+      </div>
+      <span style="background:#e6532e;padding:10px 32px;border-radius:24px;font-size:13px;font-weight:bold">去下单</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>改动范围</h3>
+  <ul>
+    <li><strong>新增：</strong>菜单页顶部 Hero 区域（深色背景 + 店名 + slogan，居中布局）</li>
+    <li><strong>现有：</strong>分类栏、菜品卡片、详情弹窗、购物车栏保持不变</li>
+    <li><strong>数据：</strong>直接复用 <code>config/shop.ts</code> 中的 name、slogan、background</li>
+  </ul>
+  <p>还有其他想加的吗？比如菜品标签（推荐/新品）、分类栏固定吸顶？</p>
+</div>
