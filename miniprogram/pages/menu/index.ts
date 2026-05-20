@@ -1,4 +1,5 @@
 import { callFunction } from '../../utils/cloud'
+import shop from '../../config/shop'
 
 const app = getApp<IAppOption>()
 
@@ -31,6 +32,7 @@ async function resolveCloudUrls(dishes: any[]) {
 
 Component({
   data: {
+    shop,
     categories: [] as any[],
     dishes: [] as any[],
     activeCategoryId: '',
