@@ -27,6 +27,7 @@
 /* 品牌 */
 .brand {
   margin-bottom: 40rpx;
+  text-align: center;
 }
 .shop-name {
   font-size: 48rpx;
