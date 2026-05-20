@@ -1,18 +1,33 @@
-<navigation-bar title="{{shop.name}}" back="{{false}}" color="black" background="transparent"></navigation-bar>
+<navigation-bar title="" back="{{false}}" color="white" background="transparent"></navigation-bar>
 <view class="page">
-  <text class="shop-name" bindtap="onHeroTap">{{shop.name}}</text>
-  <text class="shop-slogan">{{shop.slogan}}</text>
-  <text class="shop-desc" wx:if="{{shop.description}}">{{shop.description}}</text>
-  <image wx:if="{{shop.background}}" class="deco-img" src="{{shop.background}}" mode="widthFix" />
-  <view class="info-row" wx:if="{{shop.hours || shop.address}}">
-    <text wx:if="{{shop.hours}}" class="info-item">🕐 {{shop.hours}}</text>
-    <text wx:if="{{shop.address}}" class="info-item">📍 {{shop.address}}</text>
+  <image wx:if="{{shop.background}}" class="hero-img" src="{{shop.background}}" mode="aspectFill" />
+  <view class="hero-placeholder" wx:else></view>
+
+  <view class="body">
+    <view class="brand">
+      <text class="shop-name" bindtap="onHeroTap">{{shop.name}}</text>
+      <text class="shop-slogan">{{shop.slogan}}</text>
+    </view>
+
+    <view class="info-list">
+      <view class="info-row" wx:if="{{shop.hours}}">
+        <text class="info-icon">🕐</text>
+        <text class="info-text">{{shop.hours}}</text>
+      </view>
+      <view class="info-divider"></view>
+      <view class="info-row" wx:if="{{shop.address}}">
+        <text class="info-icon">📍</text>
+        <text class="info-text">{{shop.address}}</text>
+      </view>
+    </view>
+
+    <view class="actions">
+      <button wx:if="{{currentOrderId}}" class="btn-order" bindtap="goMyOrder">查看我的订单</button>
+      <button class="btn-primary" bindtap="goMenu">开始点餐</button>
+    </view>
+
+    <text class="footer" wx:if="{{shop.footer}}">{{shop.footer}}</text>
   </view>
-  <view class="actions">
-    <button wx:if="{{currentOrderId}}" class="btn-order" bindtap="goMyOrder">查看我的订单</button>
-    <button class="btn-primary" bindtap="goMenu">开始点餐</button>
-  </view>
-  <text class="footer" wx:if="{{shop.footer}}">{{shop.footer}}</text>
 </view>
 
 <view class="modal-mask" wx:if="{{showProfile}}"></view>
